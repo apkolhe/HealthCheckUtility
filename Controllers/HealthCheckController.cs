@@ -96,7 +96,6 @@ namespace Azure.Platform.HealthCheck.Controllers
         public async Task<IActionResult> GetStandardHealthCheck()
         {
             endpoints = _configuration.GetSection("livenessEndpoint:urls").Get<LivenessEndpoint[]>();
-            //var foo = _configuration.GetSection("livenessEndpoint:urls").Get<LivenessEndpoint[]>();
             unhealthyStatusThresholdPercentage = _configuration["unhealthyStatusThresholdPercentage"];
             responseTimeoutThresholdInMs = _configuration["responseTimeoutThresholdInMs"];
 
@@ -192,35 +191,6 @@ namespace Azure.Platform.HealthCheck.Controllers
 
             return percentage;
         }
-
-
-        //[HttpGet]
-        //[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-        //[Route("/ping")]
-        //public IActionResult GetStandardHealthCheck()
-        //{
-        //    var hcAppSetting = _configuration.GetValue<string>(ConfigKey);
-        //    string failInstanceName = _configuration["FailInstanceName"];
-        //    if (!string.IsNullOrWhiteSpace(hcAppSetting)
-        //        && hcAppSetting.ToLowerInvariant().Equals(ConfigExpectedValue.ToLowerInvariant()))
-        //    {
-
-        //        //Simulate fault on a single instance and one app
-        //        if (MachineName == failInstanceName && Request.Host.Value.ToLower().Contains("app1"))
-        //        {                    
-        //            return StatusCode(500);
-        //        }
-
-        //        var result = new { MachineName, HttpStatusCode.OK };
-
-        //        //return Ok(((int)HttpStatusCode.OK).ToString());
-        //        return Ok(result);
-        //    }
-        //    //var notFoundResult = new { MachineName, HttpStatusCode.ServiceUnavailable };
-        //    //return NotFound(((int)HttpStatusCode.NotFound).ToString());
-        //    return new StatusCodeResult(StatusCodes.Status503ServiceUnavailable);
-
-        //}
 
         [HttpGet]
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
